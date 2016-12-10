@@ -514,6 +514,7 @@
 				005BD4921DF6F6D2008B8E1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		005BD4931DF6F6D2008B8E1A /* Build configuration list for PBXNativeTarget "FoodPinTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +523,7 @@
 				005BD4951DF6F6D2008B8E1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		005BD4961DF6F6D2008B8E1A /* Build configuration list for PBXNativeTarget "FoodPinUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +532,7 @@
 				005BD4981DF6F6D2008B8E1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
