@@ -9,28 +9,29 @@
 import UIKit
 
 class RestaurantTableViewController: UITableViewController {
-    
-    var restaurantNames = ["Cafe Deadend", "Homei", "Teakha", "Cafe Loisl", "Petite Oyster",
-                           "For Kee Restaurant", "Po's Atelier", "Bourke Street Bakery", "Haigh's Chocolate",
-                           "Palomino Espresso", "Upstate", "Traif", "Graham Avenue Meats", "Waffle & Wolf",
-                           "Five Leaves", "Cafe Lore", "Confessional", "Barrafina", "Donostia", "Royal Oak", "CASK Pub and Kitchen"]
-    
-    var restaurantImages = ["cafedeadend.jpg", "homei.jpg", "teakha.jpg",
-                            "cafeloisl.jpg", "petiteoyster.jpg", "forkeerestaurant.jpg", "posatelier.jpg",
-                            "bourkestreetbakery.jpg", "haighschocolate.jpg", "palominoespresso.jpg",
-                            "upstate.jpg", "traif.jpg", "grahamavenuemeats.jpg", "wafflewolf.jpg",
-                            "fiveleaves.jpg", "cafelore.jpg", "confessional.jpg", "barrafina.jpg",
-                            "donostia.jpg", "royaloak.jpg", "caskpubkitchen.jpg"]
-    
-    var restaurantLocations = ["Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong", "Hong Kong",
-                               "Hong Kong", "Sydney", "Sydney", "Sydney", "New York", "New York", "New York",
-                               "New York", "New York", "New York", "New York", "London", "London", "London", "London"]
-    
-    var restaurantTypes = ["Coffee & Tea Shop", "Cafe", "Tea House", "Austrian / Causual Drink", "French", "Bakery", "Bakery",
-                           "Chocolate", "Cafe", "American /Seafood", "American", "American", "Breakfast & Brunch", "Coffee & Tea",
-                           "Coffee & Tea", "Latin American", "Spanish", "Spanish", "Spanish", "British", "Thai"]
-    
-    var restaurantIsVisited = Array(repeating: false, count: 21)
+    var restaurants:[Restaurant] = [
+        Restaurant(name: "Cafe Deadend", type: "Coffee & Tea Shop", location: "Hong Kong", image: "cafedeadend.jpg", visited: false),
+        Restaurant(name: "Homei", type: "Cafe", location: "Hong Kong", image: "homei.jpg", visited: false),
+        Restaurant(name: "Teakha", type: "Tea House", location: "Hong Kong", image: "teakha.jpg", visited: false),
+        Restaurant(name: "Cafe loisl", type: "Austrian / Causual Drink", location: "Hong Kong", image: "cafeloisl.jpg", visited: false),
+        Restaurant(name: "Petite Oyster", type: "French", location: "Hong Kong", image: "petiteoyster.jpg", visited: false),
+        Restaurant(name: "For Kee Restaurant", type: "Bakery", location: "Hong Kong", image: "forkeerestaurant.jpg", visited: false),
+        Restaurant(name: "Po's Atelier", type: "Bakery", location: "Hong Kong", image: "posatelier.jpg", visited: false),
+        Restaurant(name: "Bourke Street Backery", type: "Chocolate", location: "Sydney", image: "bourkestreetbakery.jpg", visited: false),
+        Restaurant(name: "Haigh's Chocolate", type: "Cafe", location: "Sydney", image: "haighschocolate.jpg", visited: false),
+        Restaurant(name: "Palomino Espresso", type: "American / Seafood", location: "Sydney", image: "palominoespresso.jpg", visited: false),
+        Restaurant(name: "Upstate", type: "American", location: "New York", image: "upstate.jpg", visited: false),
+        Restaurant(name: "Traif", type: "American", location: "New York", image: "traif.jpg", visited: false),
+        Restaurant(name: "Graham Avenue Meats", type: "Breakfast & Brunch", location: "New York", image: "grahamavenuemeats.jpg", visited: false),
+        Restaurant(name: "Waffle & Wolf", type: "Coffee & Tea", location: "New York", image: "wafflewolf.jpg", visited: false),
+        Restaurant(name: "Five Leaves", type: "Coffee & Tea", location: "New York", image: "fiveleaves.jpg", visited: false),
+        Restaurant(name: "Cafe Lore", type: "Latin American", location: "New York", image: "cafelore.jpg", visited: false),
+        Restaurant(name: "Confessional", type: "Spanish", location: "New York", image: "confessional.jpg", visited: false),
+        Restaurant(name: "Barrafina", type: "Spanish", location: "London", image: "barrafina.jpg", visited: false),
+        Restaurant(name: "Donostia", type: "Spanish", location: "London", image: "donostia.jpg", visited: false),
+        Restaurant(name: "Royal Oak", type: "British", location: "London", image: "royaloak.jpg", visited: false),
+        Restaurant(name: "CASK Pub and Kitchen", type: "Thai", location: "London", image: "caskpubkitchen.jpg", visited: false)
+        ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,48 +61,23 @@ class RestaurantTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return restaurantNames.count
+        return restaurants.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let index = indexPath.row
+        let restaurant = restaurants[indexPath.row]
         let cellIdentifier = "Cell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! RestaurantTableViewCell
         
-        cell.nameLabel.text = restaurantNames[index]
-        cell.locationLabel.text = restaurantLocations[index]
-        cell.typeLabel.text = restaurantTypes[index]
-        cell.thumbnailImageView.image = UIImage(named: restaurantImages[index])
+        cell.nameLabel.text = restaurant.name
+        cell.locationLabel.text = restaurant.location
+        cell.typeLabel.text = restaurant.type
+        cell.thumbnailImageView.image = UIImage(named: restaurant.image)
         
-        cell.accessoryType = restaurantIsVisited[index] ? .checkmark : .none
+        cell.accessoryType = restaurant.visited ? .checkmark : .none
 
         return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath:IndexPath) {
-        // Create an option menu
-        let optionMenu = UIAlertController(title: nil, message: "What do you want to do?", preferredStyle: .actionSheet)
-        
-        // Add actions to the menu
-        let callActionHandler = { (action: UIAlertAction!) -> Void in
-            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet", preferredStyle: .alert)
-            alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alertMessage, animated: true, completion: nil)
-        }
-        optionMenu.addAction(UIAlertAction(title: "Call 123-000-\(indexPath.row)", style: .default, handler: callActionHandler))
-        optionMenu.addAction(UIAlertAction(title: "Check in", style: .default, handler: {
-            (action: UIAlertAction) -> Void in
-            
-            let cell = tableView.cellForRow(at: indexPath)
-            cell?.accessoryType = .checkmark
-            self.restaurantIsVisited[indexPath.row] = true
-        
-        }))
-        optionMenu.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        
-        present(optionMenu, animated: true, completion: nil)
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     /*
@@ -122,11 +98,12 @@ class RestaurantTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexpath: IndexPath) -> [UITableViewRowAction]? {
+        let restaurant = restaurants[indexpath.row]
         var activityItems: [Any] = []
         let shareAction = UITableViewRowAction(style: .default, title: "Share", handler: {
             (action, indexPath) -> Void in
-            activityItems.append("Just checking in at \(self.restaurantNames[indexPath.row])")
-            if let imageToShare = UIImage(named: self.restaurantImages[indexPath.row]) {
+            activityItems.append("Just checking in at \(restaurant.name)")
+            if let imageToShare = UIImage(named: restaurant.image) {
                 activityItems.append(imageToShare)
             }
             let activityController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
@@ -136,11 +113,7 @@ class RestaurantTableViewController: UITableViewController {
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: {
             (action, indexPath) -> Void in
             let index = indexPath.row
-            self.restaurantNames.remove(at: index)
-            self.restaurantLocations.remove(at: index)
-            self.restaurantTypes.remove(at: index)
-            self.restaurantIsVisited.remove(at: index)
-            self.restaurantImages.remove(at: index)
+            self.restaurants.remove(at: index)
             
             tableView.deleteRows(at: [indexPath], with: .fade)
         })
@@ -166,14 +139,18 @@ class RestaurantTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showRestaurantDetail" {
+            if let index = tableView.indexPathForSelectedRow?.row {
+                let destinationController = segue.destination as! RestaurantDetailViewController
+                destinationController.restaurant = self.restaurants[index]
+            }
+        }
     }
-    */
+ 
 
 }
