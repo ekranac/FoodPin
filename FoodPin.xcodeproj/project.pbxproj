@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000B83F61E141D29009A121B /* RestaurantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000B83F51E141D29009A121B /* RestaurantTableViewCell.swift */; };
+		001E66FC1E0AE77E00953E28 /* RestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001E66FB1E0AE77E00953E28 /* RestaurantTableViewController.swift */; };
 		005BD46C1DF6F6D2008B8E1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BD46B1DF6F6D2008B8E1A /* AppDelegate.swift */; };
-		005BD46E1DF6F6D2008B8E1A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BD46D1DF6F6D2008B8E1A /* ViewController.swift */; };
 		005BD4711DF6F6D2008B8E1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005BD46F1DF6F6D2008B8E1A /* Main.storyboard */; };
 		005BD4731DF6F6D2008B8E1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 005BD4721DF6F6D2008B8E1A /* Assets.xcassets */; };
 		005BD4761DF6F6D2008B8E1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 005BD4741DF6F6D2008B8E1A /* LaunchScreen.storyboard */; };
@@ -34,9 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		000B83F51E141D29009A121B /* RestaurantTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewCell.swift; sourceTree = "<group>"; };
+		001E66FB1E0AE77E00953E28 /* RestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewController.swift; sourceTree = "<group>"; };
 		005BD4681DF6F6D2008B8E1A /* FoodPin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodPin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		005BD46B1DF6F6D2008B8E1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		005BD46D1DF6F6D2008B8E1A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		005BD4701DF6F6D2008B8E1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		005BD4721DF6F6D2008B8E1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		005BD4751DF6F6D2008B8E1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,11 +100,12 @@
 			isa = PBXGroup;
 			children = (
 				005BD46B1DF6F6D2008B8E1A /* AppDelegate.swift */,
-				005BD46D1DF6F6D2008B8E1A /* ViewController.swift */,
 				005BD46F1DF6F6D2008B8E1A /* Main.storyboard */,
 				005BD4721DF6F6D2008B8E1A /* Assets.xcassets */,
 				005BD4741DF6F6D2008B8E1A /* LaunchScreen.storyboard */,
 				005BD4771DF6F6D2008B8E1A /* Info.plist */,
+				001E66FB1E0AE77E00953E28 /* RestaurantTableViewController.swift */,
+				000B83F51E141D29009A121B /* RestaurantTableViewCell.swift */,
 			);
 			path = FoodPin;
 			sourceTree = "<group>";
@@ -188,7 +191,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Ziga Besal";
 				TargetAttributes = {
 					005BD4671DF6F6D1008B8E1A = {
@@ -262,7 +265,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				005BD46E1DF6F6D2008B8E1A /* ViewController.swift in Sources */,
+				001E66FC1E0AE77E00953E28 /* RestaurantTableViewController.swift in Sources */,
+				000B83F61E141D29009A121B /* RestaurantTableViewCell.swift in Sources */,
 				005BD46C1DF6F6D2008B8E1A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +340,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -386,6 +391,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
