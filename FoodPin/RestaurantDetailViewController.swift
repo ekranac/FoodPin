@@ -24,6 +24,9 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         tableView.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.2)
         tableView.separatorColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.8)
         tableView.tableFooterView = UIView(frame: .zero)
+        
+        tableView.estimatedRowHeight = 36.0
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,13 +50,17 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             cell.valueLabel.text = restaurant.location
         case 3:
             cell.fieldLabel.text = "Been here"
-            cell.valueLabel.text = (restaurant.visited) ? "Yes, I've been here" : "No"
+            cell.valueLabel.text = (restaurant.isVisited) ? "Yes, I've been here" : "No"
         default:
             cell.fieldLabel.text = ""
             cell.valueLabel.text = ""
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
