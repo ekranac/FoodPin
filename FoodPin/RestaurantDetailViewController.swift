@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import MapKit
 
 class RestaurantDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var restaurantImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var mapView: MKMapView!
     var restaurant: Restaurant!
+    var location: CLLocation?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +26,43 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         restaurantImageView.image = UIImage(named: restaurant.image)
         tableView.backgroundColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.2)
         tableView.separatorColor = UIColor(red: 240.0/255.0, green: 240.0/255.0, blue: 240.0/255.0, alpha: 0.8)
-        tableView.tableFooterView = UIView(frame: .zero)
         
         tableView.estimatedRowHeight = 36.0
         tableView.rowHeight = UITableViewAutomaticDimension
+        
+        mapView.alpha = 0.0
+        
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(restaurant.location, completionHandler: {
+            placemarks, error in
+            if error != nil {
+                print(error!)
+                return
+            }
+            
+            if let placemarks = placemarks {
+                let placemark = placemarks[0]
+                
+                let annotation = MKPointAnnotation()
+                
+                if let location = placemark.location {
+                    self.location = location
+                    annotation.coordinate = location.coordinate
+                    self.mapView.addAnnotation(annotation)
+                    
+                    let region = MKCoordinateRegionMakeWithDistance(annotation.coordinate, 250, 250)
+                    self.mapView.setRegion(region, animated: false)
+                    
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.mapView.alpha = 1.0
+                    }, completion: {
+                        completed in
+                        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.showMap))
+                        self.mapView.addGestureRecognizer(tapGestureRecognizer)
+                    })
+                }
+            }
+        })
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +111,10 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         if segue.identifier == "showReview" {
             let destinationController = segue.destination as! ReviewViewController
             destinationController.restaurant = self.restaurant
+        } else if segue.identifier == "showMap" {
+            let destinationController = segue.destination as! MapViewController
+            destinationController.restaurant = self.restaurant
+            destinationController.location = self.location
         }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
@@ -99,5 +139,9 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             
             tableView.reloadData()
         }
+    }
+    
+    func showMap() {
+        performSegue(withIdentifier: "showMap", sender: self)
     }
 }

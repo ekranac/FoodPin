@@ -13,6 +13,7 @@ class ReviewViewController: UIViewController {
     @IBOutlet var backgroundImageView: UIImageView!
     @IBOutlet var containerView: UIView!
     @IBOutlet var containerImage: UIImageView!
+    @IBOutlet var btnClose: UIButton!
     
     var restaurant: Restaurant!
 
@@ -28,14 +29,17 @@ class ReviewViewController: UIViewController {
         backgroundImageView.addSubview(blurEffectView)
         
         let scaleTransform = CGAffineTransform.init(scaleX: 0, y: 0)
-        let translateTransform = CGAffineTransform.init(translationX: 9, y: -100)
+        let translateTransform = CGAffineTransform.init(translationX: 0, y: -1000)
         let combineTransform = scaleTransform.concatenating(translateTransform)
         containerView.transform = combineTransform
+        btnClose.transform = CGAffineTransform.init(translationX: 1000, y: 0)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         UIView.animate(withDuration: 0.7, animations: {
             self.containerView.transform = CGAffineTransform.identity
+            self.btnClose.transform = CGAffineTransform.identity
         })
     }
 
