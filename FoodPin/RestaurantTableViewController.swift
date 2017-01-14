@@ -80,6 +80,10 @@ class RestaurantTableViewController: UITableViewController {
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
     /*
     // Override to support conditional editing of the table view.
@@ -103,6 +107,7 @@ class RestaurantTableViewController: UITableViewController {
         var activityItems: [Any] = []
         let shareAction = UITableViewRowAction(style: .default, title: "Share", handler: {
             (action, indexPath) -> Void in
+            tableView.setEditing(false, animated: true)
             activityItems.append("Just checking in at \(restaurant.name)")
             if let imageToShare = UIImage(named: restaurant.image) {
                 activityItems.append(imageToShare)
@@ -153,5 +158,8 @@ class RestaurantTableViewController: UITableViewController {
         }
     }
  
+    @IBAction func unwindToHomeScreen(segue:UIStoryboardSegue) {
+        
+    }
 
 }
