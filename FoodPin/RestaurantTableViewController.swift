@@ -73,8 +73,6 @@ class RestaurantTableViewController: UITableViewController {
         cell.typeLabel.text = restaurant.type
         cell.thumbnailImageView.image = UIImage(named: restaurant.image)
         
-        cell.accessoryType = restaurant.isVisited ? .checkmark : .none
-        
         tableView.estimatedRowHeight = 80.0
         tableView.rowHeight = UITableViewAutomaticDimension
 
