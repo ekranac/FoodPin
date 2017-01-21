@@ -13,7 +13,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBOutlet var mapView: MKMapView!
     
-    var restaurant: Restaurant!
+    var restaurant: RestaurantMO!
     var location: CLLocation!
 
     override func viewDidLoad() {
@@ -55,7 +55,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         annotationView?.pinTintColor = UIColor.orange
         
         let leftIconView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 53, height: 53))
-        leftIconView.image = UIImage(named: restaurant.image)
+        leftIconView.image = UIImage(data: restaurant.image as! Data)
         annotationView?.leftCalloutAccessoryView = leftIconView
         
         return annotationView
