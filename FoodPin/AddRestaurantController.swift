@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AddRestaurantController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -14,10 +15,13 @@ class AddRestaurantController: UITableViewController, UIImagePickerControllerDel
     @IBOutlet var textFieldName: UITextField!
     @IBOutlet var textFieldType: UITextField!
     @IBOutlet var textFieldLocation: UITextField!
+    @IBOutlet var textFieldPhone: UITextField!
     
     @IBOutlet var btnBeenHere: UIButton!
     @IBOutlet var btnHaveNotBeenHere: UIButton!
     var isVisited = true
+    
+    var restaurant: RestaurantMO!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,20 +71,6 @@ class AddRestaurantController: UITableViewController, UIImagePickerControllerDel
         }
         
         dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func saveRestaurant() {
-        let restaurantName: String = textFieldName.text!
-        let restaurantType: String = textFieldType.text!
-        let restaurantLocation: String = textFieldLocation.text!
-        
-        if restaurantName == "" || restaurantType == "" || restaurantLocation == "" {
-            let alertController = UIAlertController(title: "Oops", message: "We can't proceed because one of the fields is blank. Please note that all fields are required", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            present(alertController, animated: true, completion: nil)
-            return
-        }
-//        dismiss(animated: true, completion: nil)
     }
 
     @IBAction func visitedStatusChanged(_ sender: UIButton) {
@@ -149,5 +139,43 @@ class AddRestaurantController: UITableViewController, UIImagePickerControllerDel
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "saveRestaurant" {
+            let restaurantName: String = textFieldName.text!
+            let restaurantType: String = textFieldType.text!
+            let restaurantLocation: String = textFieldLocation.text!
+            
+            if restaurantName == "" || restaurantType == "" || restaurantLocation == "" {
+                let alertController = UIAlertController(title: "Oops", message: "We can't proceed because one of the fields is blank. Please note that all fields are required", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                present(alertController, animated: true, completion: nil)
+                return false
+            }
+            
+            if let appDelegate = (UIApplication.shared.delegate as? AppDelegate) {
+                restaurant = RestaurantMO(context:
+                    appDelegate.persistentContainer.viewContext)
+                restaurant.name = restaurantName
+                restaurant.type = restaurantType
+                restaurant.location = restaurantLocation
+                if let restaurantPhone = textFieldPhone.text {
+                    restaurant.phone = restaurantPhone
+                }
+                restaurant.isVisited = isVisited
+                if let restaurantImage = photoImageView.image {
+                    if let imageData = UIImagePNGRepresentation(restaurantImage) {
+                        restaurant.image = NSData(data: imageData)
+                    }
+                }
+                
+                print("Saving data to context ...")
+                appDelegate.saveContext()
+            }
+
+        }
+
+        return true
+    }
 
 }

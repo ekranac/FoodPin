@@ -56,6 +56,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         let leftIconView = UIImageView(frame: CGRect.init(x: 0, y: 0, width: 53, height: 53))
         leftIconView.image = UIImage(data: restaurant.image as! Data)
+        leftIconView.contentMode = .scaleAspectFill
         annotationView?.leftCalloutAccessoryView = leftIconView
         
         return annotationView

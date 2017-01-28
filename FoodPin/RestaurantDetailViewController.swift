@@ -86,7 +86,10 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             cell.valueLabel.text = restaurant.location
         case 3:
             cell.fieldLabel.text = "Been here"
-            cell.valueLabel.text = (restaurant.isVisited) ? "Yes, I've been here before. \(restaurant.rating)" : "No"
+            cell.valueLabel.text = (restaurant.isVisited) ? "Yes, I've been here before. \(restaurant.rating == nil ? "" : restaurant.rating!)" : "No"
+        case 4:
+            cell.fieldLabel.text = "Phone"
+            cell.valueLabel.text = restaurant.phone
         default:
             cell.fieldLabel.text = ""
             cell.valueLabel.text = ""
@@ -100,7 +103,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
 
     
@@ -136,9 +139,13 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             default: break
                 
             }
-            
-            tableView.reloadData()
         }
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.saveContext()
+        }
+        
+        tableView.reloadData()
     }
     
     func showMap() {
