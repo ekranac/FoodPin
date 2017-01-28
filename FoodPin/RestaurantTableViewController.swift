@@ -88,9 +88,7 @@ class RestaurantTableViewController: UITableViewController, NSFetchedResultsCont
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        searchController.dismiss(animated: false, completion: nil)
-        searchController.searchBar.text = ""
-        searchController.searchBar.setShowsCancelButton(false, animated: false)
+        searchController.isActive = false
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
