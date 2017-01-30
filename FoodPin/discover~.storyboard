@@ -11,6 +11,52 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Discover-->
+        <scene sceneID="Er5-5C-g2Q">
+            <objects>
+                <tableViewController id="ysp-Jg-vhH" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Iiq-rI-dJE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="No5-7L-uVF">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="No5-7L-uVF" id="ejO-x3-gER">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ysp-Jg-vhH" id="GdV-MK-IgC"/>
+                            <outlet property="delegate" destination="ysp-Jg-vhH" id="UVM-AV-Lcg"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Discover" id="PN5-wD-pUX"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RUI-Mc-Bta" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2726" y="-1213"/>
+        </scene>
+        <!--Discover-->
+        <scene sceneID="nmR-Ry-jLr">
+            <objects>
+                <navigationController id="CsA-26-13R" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Discover" image="discover" id="Tc8-75-oSd"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k9s-dx-bYC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ysp-Jg-vhH" kind="relationship" relationship="rootViewController" id="XlY-Am-3MR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eV1-7O-KPg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1900" y="-1214"/>
+        </scene>
         <!--Food Pin-->
         <scene sceneID="kkj-ku-RDG">
             <objects>
@@ -638,7 +684,7 @@ What do you think?</string>
                     </tabBar>
                     <connections>
                         <segue destination="TCJ-6a-SfJ" kind="relationship" relationship="viewControllers" id="k9L-qz-qHh"/>
-                        <segue destination="1re-LA-0NR" kind="relationship" relationship="viewControllers" id="8er-7z-PcP"/>
+                        <segue destination="CsA-26-13R" kind="relationship" relationship="viewControllers" id="8er-7z-PcP"/>
                         <segue destination="6aZ-Xm-nfN" kind="relationship" relationship="viewControllers" id="m33-2Y-QV1"/>
                     </connections>
                 </tabBarController>
@@ -646,25 +692,15 @@ What do you think?</string>
             </objects>
             <point key="canvasLocation" x="555.07246376811599" y="84.782608695652186"/>
         </scene>
-        <!--About-->
+        <!--about-->
         <scene sceneID="K9l-Wz-tyu">
             <objects>
-                <viewControllerPlaceholder storyboardName="About" id="6aZ-Xm-nfN" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="about" id="6aZ-Xm-nfN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="NyZ-9k-l58"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="43C-Cg-Tho" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="304" y="-696"/>
-        </scene>
-        <!--Discover-->
-        <scene sceneID="8JO-Cu-4zI">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Discover" id="1re-LA-0NR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="z2J-PJ-fKg"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DiF-ya-WLS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1477" y="-696"/>
         </scene>
     </scenes>
     <resources>
@@ -672,6 +708,7 @@ What do you think?</string>
         <image name="cafeloisl" width="426" height="426"/>
         <image name="check" width="28" height="28"/>
         <image name="cross" width="24" height="24"/>
+        <image name="discover" width="25" height="19"/>
         <image name="favorite" width="17" height="25"/>
         <image name="photoalbum" width="85" height="85"/>
     </resources>
