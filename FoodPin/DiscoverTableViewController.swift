@@ -67,10 +67,11 @@ class DiscoverTableViewController: UITableViewController {
         let publicDatabase = cloudContainer.publicCloudDatabase
         let predicate = NSPredicate(value: true)
         let query = CKQuery(recordType: "Restaurant", predicate: predicate)
+        query.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         
         // Create query operation
         let queryOperation = CKQueryOperation(query: query)
-        queryOperation.desiredKeys = ["name"]
+        queryOperation.desiredKeys = ["name", "type", "location"]
         queryOperation.queuePriority = .veryHigh
         queryOperation.resultsLimit = 50
         
@@ -105,18 +106,20 @@ class DiscoverTableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! DiscoverTableViewCell
 
         // Configure the cell...
         let restaurant = restaurants[indexPath.row]
-        cell.textLabel?.text = restaurant.object(forKey: "name") as? String
+        cell.restaurantNameLabel?.text = restaurant.object(forKey: "name") as? String
+        cell.restaurantTypeLabel?.text = restaurant.object(forKey: "type") as? String
+        cell.restaurantLocationLabel?.text = restaurant.object(forKey: "location") as? String
         // Set the default image
-        cell.imageView?.image = UIImage(named: "photoalbum")
+        cell.restaurantImage?.image = UIImage(named: "photoalbum")
         
         // Check if image is available in cache
         if let imageFileUrl = imageCache.object(forKey: restaurant.recordID) {
             if let imageData = try? Data.init(contentsOf: imageFileUrl as URL) {
-                cell.imageView?.image = UIImage(data: imageData)
+                cell.restaurantImage?.image = UIImage(data: imageData)
             }
         } else {
             
@@ -139,7 +142,7 @@ class DiscoverTableViewController: UITableViewController {
                     if let image = restaurantRecord.object(forKey: "image") {
                         let imageAsset = image as! CKAsset
                         if let imageData = try? Data.init(contentsOf: imageAsset.fileURL) {
-                            cell.imageView?.image = UIImage(data: imageData)
+                            cell.restaurantImage?.image = UIImage(data: imageData)
                         }
                         
                         // Add image URL to cache
