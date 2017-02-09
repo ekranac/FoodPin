@@ -2,6 +2,33 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>favorite-shortcut</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.ekranac.OpenFavorites</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Show Favorites</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>discover-shortcut</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.ekranac.OpenDiscover</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Discover Restaurants</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeAdd</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.ekranac.NewRestaurant</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Add Restaurant</string>
+		</dict>
+	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>
 You need to grant the app access to your photo library so you can pick your favorite restaurant photo.</string>
